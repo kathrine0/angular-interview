@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Exercise1Component } from './exercise1/exercise1';
+import { Exercise2FormsComponent } from './exercise2-forms/exercise2-forms';
 
 export const routes: Routes = [
   {
@@ -10,5 +11,9 @@ export const routes: Routes = [
   {
     path: 'exercise1',
     component: Exercise1Component,
+  },
+  {
+    path: 'exercise2-forms',
+    component: Exercise2FormsComponent,
   },
 ];

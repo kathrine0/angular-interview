@@ -1,1 +1,12 @@
-<router-outlet />
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="app-title">Angular Interview Exercises</span>
+  <span class="spacer"></span>
+  <nav class="nav-links">
+    <a mat-button routerLink="/exercise1" routerLinkActive="active">Exercise 1: Refactoring</a>
+    <a mat-button routerLink="/exercise2-forms" routerLinkActive="active">Exercise 2: Forms</a>
+  </nav>
+</mat-toolbar>
+
+<div class="app-content">
+  <router-outlet />
+</div>

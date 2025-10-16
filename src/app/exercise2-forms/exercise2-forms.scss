@@ -1,0 +1,145 @@
+.exercise-container {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header-card {
+  margin-bottom: 24px;
+
+  mat-card-title {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  mat-card-subtitle {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .instructions {
+    margin-bottom: 16px;
+    line-height: 1.6;
+
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  }
+
+  .problem-indicators {
+    background-color: #fff3cd;
+    border-left: 4px solid #ff9800;
+    padding: 16px;
+    border-radius: 4px;
+
+    p {
+      margin: 0 0 8px 0;
+      font-weight: 500;
+    }
+
+    ul {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.form-card {
+  mat-card-content {
+    padding-top: 16px;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .field-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+
+    .required {
+      color: #f44336;
+    }
+  }
+
+  .error-message {
+    font-size: 12px;
+    color: #f44336;
+    margin-top: 4px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.debug-info {
+  margin-top: 32px;
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+
+  h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+  }
+
+  .debug-section {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .valid {
+      color: #4caf50;
+      font-weight: 500;
+    }
+
+    .invalid {
+      color: #f44336;
+      font-weight: 500;
+    }
+
+    pre {
+      background-color: #fff;
+      padding: 12px;
+      border-radius: 4px;
+      border: 1px solid #e0e0e0;
+      overflow-x: auto;
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+}
+
