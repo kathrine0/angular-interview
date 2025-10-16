@@ -1,0 +1,156 @@
+<!-- BAD: Using old control flow syntax (*ngIf, *ngFor, *ngSwitch) -->
+<div class="exercise1-container">
+  <mat-card class="header-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>User Management Dashboard</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stats">
+        <mat-chip class="stat-chip">Total Users: {{ users.length }}</mat-chip>
+        <mat-chip class="stat-chip">Active: {{ getActiveUsersCount() }}</mat-chip>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="controls-card">
+    <mat-card-content>
+      <div class="controls">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search users</mat-label>
+          <input
+            matInput
+            [(ngModel)]="searchTerm"
+            (ngModelChange)="onSearchChange()"
+            placeholder="Search by name or email">
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Status Filter</mat-label>
+          <mat-select [(ngModel)]="statusFilter" (ngModelChange)="onStatusFilterChange()">
+            <mat-option value="all">All Status</mat-option>
+            <mat-option value="active">Active</mat-option>
+            <mat-option value="inactive">Inactive</mat-option>
+            <mat-option value="pending">Pending</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="sort-field">
+          <mat-label>Sort By</mat-label>
+          <mat-select [(ngModel)]="sortBy" (ngModelChange)="sortUsers()">
+            <mat-option value="name">Sort by Name</mat-option>
+            <mat-option value="email">Sort by Email</mat-option>
+            <mat-option value="status">Sort by Status</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="content">
+    <!-- BAD: Old *ngIf syntax -->
+    <div class="loading-container" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+      <p>Loading...</p>
+    </div>
+
+    <div class="main-content" *ngIf="!isLoading">
+      <div class="users-section">
+        <mat-card class="users-card">
+          <mat-card-header>
+            <mat-card-title>Users</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="users-list">
+              <!-- BAD: Old *ngFor syntax -->
+              <mat-card
+                class="user-item"
+                *ngFor="let user of filteredUsers"
+                [class.selected]="selectedUser?.id === user.id"
+                (click)="selectUser(user)">
+                <mat-card-content>
+                  <div class="user-info">
+                    <div class="user-name">
+                      <mat-icon>person</mat-icon>
+                      {{ user.name }}
+                    </div>
+                    <div class="user-email">
+                      <mat-icon>email</mat-icon>
+                      {{ user.email }}
+                    </div>
+
+                    <!-- BAD: Old *ngSwitch syntax -->
+                    <div class="user-status">
+                      <span [ngSwitch]="user.status">
+                        <mat-chip *ngSwitchCase="'active'" class="status-chip status-active">
+                          Active
+                        </mat-chip>
+                        <mat-chip *ngSwitchCase="'inactive'" class="status-chip status-inactive">
+                          Inactive
+                        </mat-chip>
+                        <mat-chip *ngSwitchCase="'pending'" class="status-chip status-pending">
+                          Pending
+                        </mat-chip>
+                      </span>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+
+              <!-- BAD: Old *ngIf -->
+              <div *ngIf="filteredUsers.length === 0" class="no-results">
+                <mat-icon>search_off</mat-icon>
+                <p>No users found</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="details-section" *ngIf="selectedUser">
+        <mat-card class="details-card">
+          <mat-card-header>
+            <mat-card-title>Posts by {{ selectedUser.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <!-- BAD: Old *ngFor with nested elements -->
+            <div class="posts-list">
+              <mat-card
+                class="post-item"
+                *ngFor="let post of userPosts">
+                <mat-card-header>
+                  <mat-card-title>
+                    <h3>{{ post.title }}</h3>
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p class="post-content">{{ post.content }}</p>
+                  <div class="post-meta">
+                    <mat-icon>thumb_up</mat-icon>
+                    {{ post.likes }} likes
+                  </div>
+                </mat-card-content>
+              </mat-card>
+
+              <div *ngIf="userPosts.length === 0" class="no-posts">
+                <mat-icon>article</mat-icon>
+                <p>No posts available</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="placeholder-section" *ngIf="!selectedUser">
+        <mat-card class="placeholder-card">
+          <mat-card-content>
+            <mat-icon>touch_app</mat-icon>
+            <p>Select a user to view their posts</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
