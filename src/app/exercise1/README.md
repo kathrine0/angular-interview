@@ -4,8 +4,6 @@
 
 This exercise contains intentionally poor code that needs to be refactored following Angular best practices. Your task is to identify and fix all the issues while maintaining the same functionality.
 
-Time estimate: **30 minutes**
-
 ## Current Functionality
 
 The application is a User Management Dashboard that:
@@ -14,6 +12,9 @@ The application is a User Management Dashboard that:
 - Allows searching and filtering users by name, email, and status
 - Allows sorting users by different criteria
 - Shows posts for each selected user
+
+
+REMOVE:
 
 ## Issues to Fix
 
@@ -69,27 +70,3 @@ The application is a User Management Dashboard that:
   - Keep Subjects private
   - Expose only Observable interface using `.asObservable()`
   - Prevent external code from calling `.next()` on Subjects
-
-## Bonus Improvements
-
-Consider these additional improvements:
-
-- Use `OnPush` change detection strategy
-- Implement proper error handling
-- Use `computed()` or pipes for derived values instead of methods in templates
-- Implement proper TypeScript types and access modifiers
-- Consider using Angular Signals for reactive state management
-- Create a proper Material theme with custom colors
-
-## Success Criteria
-
-Your refactored code should:
-
-1. Maintain all existing functionality
-2. Fix all 7 issues listed above
-3. Follow Angular best practices and style guide
-4. Be clean, readable, and maintainable
-5. Have no memory leaks
-6. Use proper TypeScript typing
-
-Good luck!
