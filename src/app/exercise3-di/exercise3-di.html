@@ -1,0 +1,87 @@
+<div class="exercise3-di-container">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Exercise 3: Dependency Injection</mat-card-title>
+    </mat-card-header>
+    <mat-card-content></mat-card-content>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Service Initialization Status</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-chip-set>
+        <mat-chip [highlighted]="configInitialized()">
+          <div class="status-container">
+            <mat-icon>{{ configInitialized() ? 'check_circle' : 'pending' }}</mat-icon>
+            Config Service
+          </div>
+        </mat-chip>
+        <mat-chip [highlighted]="preferencesInitialized()">
+          <div class="status-container">
+            <mat-icon>{{ preferencesInitialized() ? 'check_circle' : 'pending' }}</mat-icon>
+            User Preferences
+          </div>
+        </mat-chip>
+        <mat-chip [highlighted]="flagsInitialized()">
+          <div class="status-container">
+            <mat-icon>{{ flagsInitialized() ? 'check_circle' : 'pending' }}</mat-icon>
+            Feature Flags
+          </div>
+        </mat-chip>
+      </mat-chip-set>
+
+      <button mat-raised-button color="primary" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+        Refresh Data
+      </button>
+
+      @if (!isAllInitialized()) {
+        <mat-card appearance="outlined" style="margin-top: 16px; background-color: #fff3cd;">
+          <mat-card-content style="display: flex; align-items: center; gap: 8px;">
+            <mat-icon color="warn">warning</mat-icon>
+            <span>Services not fully initialized! Check console for errors.</span>
+          </mat-card-content>
+        </mat-card>
+      }
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Loaded Configuration</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+        <div>
+          <strong>Config Service:</strong>
+          <pre>{{ config() | json }}</pre>
+        </div>
+        <div>
+          <strong>User Preferences Service:</strong>
+          <pre>{{ preferences() | json }}</pre>
+        </div>
+        <div>
+          <strong>Feature Flags Service:</strong>
+          <pre>{{ flags() | json }}</pre>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>info</mat-icon>
+        Your Task
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Open the browser console</strong> to see initialization errors!</p>
+      <p>
+        Identify the problem and provide a solution to fix it.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

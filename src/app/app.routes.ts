@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Exercise1Component } from './exercise1/exercise1';
 import { Exercise2FormsComponent } from './exercise2-forms/exercise2-forms';
-import { Exercise3DirectivesComponent } from './exercise3-directives/exercise3-directives';
+import { Exercise3DIComponent } from './exercise3-di/exercise3-di';
 
 export const routes: Routes = [
   {
@@ -18,7 +18,7 @@ export const routes: Routes = [
     component: Exercise2FormsComponent,
   },
   {
-    path: 'exercise3-directives',
-    component: Exercise3DirectivesComponent,
+    path: 'exercise3-di',
+    component: Exercise3DIComponent,
   },
 ];
