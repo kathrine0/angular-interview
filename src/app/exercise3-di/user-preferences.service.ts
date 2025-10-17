@@ -1,7 +1,6 @@
 import { computed, Injectable, inject, signal } from '@angular/core';
 import { ConfigService } from './config.service';
 
-// BAD: Service depends on ConfigService but no guarantee it's initialized first
 @Injectable({
   providedIn: 'root',
 })
@@ -9,14 +8,13 @@ export class UserPreferencesService {
   private readonly configService = inject(ConfigService);
   private readonly preferencesSignal = signal<any>(null);
 
-  // Public readonly signal for reactive access
   readonly preferences = computed(() => this.preferencesSignal() ?? {});
   readonly isInitialized = computed(() => this.preferencesSignal() !== null);
 
   async initialize(): Promise<void> {
     console.log('UserPreferencesService: Loading user preferences...');
+    this.preferencesSignal.set({});
 
-    // BAD: Reading config immediately, might not be initialized!
     const config = this.configService.config();
 
     if (!config.apiUrl) {

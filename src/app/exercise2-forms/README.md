@@ -2,7 +2,7 @@
 
 ## Objective
 
-This exercise contains a form with a custom form component that is not properly integrated with Angular's Forms API. Your task is to identify and fix the issues.
+This exercise contains a form with a custom form component that is not working properly. Your task is to identify and fix the issues.
 
 ## Current Functionality
 
@@ -28,12 +28,3 @@ As a result:
 - It doesn't respond to programmatic value changes
 - The form doesn't include its value when submitting
 - Disabled state is not respected
-
-## Bonus Improvements
-
-Consider these additional improvements:
-
-- Add custom validators for the rating component
-- Implement proper accessibility (ARIA labels, keyboard navigation)
-- Add validation error messages for the rating component
-- Add proper TypeScript typing

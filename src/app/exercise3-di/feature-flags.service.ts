@@ -2,8 +2,6 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { ConfigService } from './config.service';
 import { UserPreferencesService } from './user-preferences.service';
 
-// BAD: Depends on both ConfigService and UserPreferencesService
-// but all three initialize in parallel
 @Injectable({
   providedIn: 'root',
 })
@@ -18,8 +16,8 @@ export class FeatureFlagsService {
 
   async initialize(): Promise<void> {
     console.log('FeatureFlagsService: Loading feature flags...');
+    this.flagsSignal.set({});
 
-    // BAD: Reading from both services immediately, might not be initialized!
     const config = this.configService.config();
     const preferences = this.userPreferencesService.preferences();
 

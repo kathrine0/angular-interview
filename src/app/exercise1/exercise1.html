@@ -1,4 +1,3 @@
-<!-- BAD: Using old control flow syntax (*ngIf, *ngFor, *ngSwitch) -->
 <div class="exercise1-container">
   <mat-card class="header-card">
     <mat-card-header>
@@ -50,7 +49,6 @@
   </mat-card>
 
   <div class="content">
-    <!-- BAD: Old *ngIf syntax -->
     <div class="loading-container" *ngIf="isLoading">
       <mat-spinner></mat-spinner>
       <p>Loading...</p>
@@ -64,7 +62,6 @@
           </mat-card-header>
           <mat-card-content>
             <div class="users-list">
-              <!-- BAD: Old *ngFor syntax -->
               <mat-card
                 class="user-item"
                 *ngFor="let user of filteredUsers"
@@ -81,7 +78,6 @@
                       {{ user.email }}
                     </div>
 
-                    <!-- BAD: Old *ngSwitch syntax -->
                     <div class="user-status">
                       <span [ngSwitch]="user.status">
                         <mat-chip *ngSwitchCase="'active'" class="status-chip status-active">
@@ -99,7 +95,6 @@
                 </mat-card-content>
               </mat-card>
 
-              <!-- BAD: Old *ngIf -->
               <div *ngIf="filteredUsers.length === 0" class="no-results">
                 <mat-icon>search_off</mat-icon>
                 <p>No users found</p>
@@ -115,7 +110,6 @@
             <mat-card-title>Posts by {{ selectedUser.name }}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <!-- BAD: Old *ngFor with nested elements -->
             <div class="posts-list">
               <mat-card
                 class="post-item"

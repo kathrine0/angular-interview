@@ -22,7 +22,6 @@ export interface Post {
 })
 export class Exercise1Service {
 
-  // BAD: Exposing full Subject instead of Observable
   public users$ = new Subject<User[]>();
 
   constructor() { }

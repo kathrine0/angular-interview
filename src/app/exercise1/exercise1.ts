@@ -36,7 +36,6 @@ import { Exercise1Service, User, Post } from './exercise1-service';
 export class Exercise1Component {
   private exercise1Service = inject(Exercise1Service);
 
-  // BAD: No proper typing, public fields everywhere
   users: User[] = [];
   filteredUsers: User[] = [];
   selectedUser: User | null = null;
@@ -47,23 +46,19 @@ export class Exercise1Component {
   sortBy = 'name';
   isLoading = false;
 
-  // BAD: Constructor doing work, nested subscriptions without cleanup
   constructor() {
     this.loadData();
   }
 
-  // BAD: Nested subscriptions (subscription hell)
   loadData() {
     this.isLoading = true;
     this.exercise1Service.loadUsers();
 
-    // BAD: No unsubscribe, nested subscriptions
     this.exercise1Service.users$.subscribe((users) => {
       this.users = users;
       this.filteredUsers = users;
       this.isLoading = false;
 
-      // BAD: Nested subscription level 1
       if (users.length > 0) {
         this.selectedUser = users[0];
         this.exercise1Service.loadPostsForUser(users[0].id).subscribe((posts) => {
@@ -73,7 +68,6 @@ export class Exercise1Component {
     });
   }
 
-  // BAD: Business logic in component
   onSearchChange() {
     this.filteredUsers = this.users.filter(
       (user) =>
@@ -84,7 +78,6 @@ export class Exercise1Component {
     this.sortUsers();
   }
 
-  // BAD: More business logic in component
   onStatusFilterChange() {
     this.applyStatusFilter();
     this.sortUsers();
@@ -102,7 +95,6 @@ export class Exercise1Component {
     }
   }
 
-  // BAD: Sorting logic in component
   sortUsers() {
     if (this.sortBy === 'name') {
       this.filteredUsers.sort((a, b) => a.name.localeCompare(b.name));
@@ -113,19 +105,16 @@ export class Exercise1Component {
     }
   }
 
-  // BAD: Nested subscriptions when selecting user
   selectUser(user: User) {
     this.selectedUser = user;
     this.isLoading = true;
 
-    // BAD: No unsubscribe
     this.exercise1Service.loadPostsForUser(user.id).subscribe((posts) => {
       this.userPosts = posts;
       this.isLoading = false;
     });
   }
 
-  // BAD: Calculating derived state in method instead of using computed or pipe
   getActiveUsersCount(): number {
     return this.users.filter((u) => u.status === 'active').length;
   }

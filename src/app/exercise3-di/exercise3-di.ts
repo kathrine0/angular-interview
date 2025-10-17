@@ -47,7 +47,6 @@ export class Exercise3DIComponent {
 
   protected async refresh() {
     console.log('--- Refreshing data ---');
-    // Intentionally calling in parallel (same problem as app initializer)
     await Promise.all([
       this.configService.initialize(),
       this.userPreferencesService.initialize(),

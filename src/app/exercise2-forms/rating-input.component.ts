@@ -2,8 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
-// BAD: This component does NOT implement ControlValueAccessor
-// It uses @Input and @Output instead, which doesn't integrate with Angular Forms
 @Component({
   selector: 'app-rating-input',
   standalone: true,
@@ -56,10 +54,8 @@ import { MatIconModule } from '@angular/material/icon';
   `],
 })
 export class RatingInputComponent {
-  // BAD: Using @Input instead of implementing ControlValueAccessor
   @Input() rating: number = 0;
 
-  // BAD: Using @Output instead of calling onChange callback from ControlValueAccessor
   @Output() ratingChange = new EventEmitter<number>();
 
   stars = [1, 2, 3, 4, 5];
@@ -67,7 +63,6 @@ export class RatingInputComponent {
 
   onStarClick(star: number) {
     this.rating = star;
-    // BAD: Emitting through @Output won't update the form control
     this.ratingChange.emit(this.rating);
   }
 
@@ -78,13 +73,5 @@ export class RatingInputComponent {
   onStarLeave() {
     this.hoverRating = 0;
   }
-
-  // MISSING: No implementation of ControlValueAccessor methods:
-  // - writeValue(value: any): void
-  // - registerOnChange(fn: any): void
-  // - registerOnTouched(fn: any): void
-  // - setDisabledState(isDisabled: boolean): void
-
-  // MISSING: No NG_VALUE_ACCESSOR provider registration
 }
 

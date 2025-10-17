@@ -12,6 +12,7 @@ export class ConfigService {
 
   async initialize(): Promise<void> {
     console.log('ConfigService: Loading base configuration...');
+    this.configSignal.set({});
 
     await this.delay(1000);
 
