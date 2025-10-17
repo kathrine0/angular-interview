@@ -3,9 +3,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { RatingInputComponent } from './rating-input.component';
 
 @Component({
   selector: 'app-exercise2-forms',
@@ -15,9 +17,11 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
+    MatDividerModule,
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    RatingInputComponent,
   ],
   templateUrl: './exercise2-forms.html',
   styleUrl: './exercise2-forms.scss',

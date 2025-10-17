@@ -1,16 +1,17 @@
 <div class="exercise-container">
-  <mat-card class="header-card">
+  <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title>Exercise 2: Forms & ControlValueAccessor</mat-card-title>
       <mat-card-subtitle>Fix the custom form components</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p class="instructions">
+      <p>
         This form uses a custom rating component that is <strong>not working correctly</strong>
         Your task is to fix it!
       </p>
+      <mat-divider></mat-divider>
       <div class="problem-indicators">
-        <p>🔴 <strong>Problems you should notice:</strong></p>
+        <p><strong>🔴 Problems you should notice:</strong></p>
         <ul>
           <li>The "Fill Sample Data" button doesn't update the rating</li>
           <li>Form submission doesn't include correct rating value</li>
@@ -22,13 +23,13 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="form-card">
+  <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title>User Feedback Form</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput [formControl]="feedbackForm.controls.name" placeholder="Enter your name">
           @if (feedbackForm.controls.name.hasError('required') && feedbackForm.get('name')?.touched) {
@@ -39,8 +40,7 @@
           }
         </mat-form-field>
 
-        <!-- Email Field -->
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput type="email" [formControl]="feedbackForm.controls.email" placeholder="Enter your email">
           @if (feedbackForm.controls.email.hasError('required') && feedbackForm.controls.email.touched) {
@@ -52,20 +52,20 @@
         </mat-form-field>
 
         <!-- Rating Field (Custom Component - BROKEN) -->
-        <div class="form-field-wrapper">
-          <label class="field-label">
-            Rating <span class="required">*</span>
+        <div class="rating-field">
+          <label class="mat-body-strong">
+            Rating <span class="required-asterisk">*</span>
           </label>
-          <app-rating-input [formControl]="feedbackForm.controls.rating"></app-rating-input>
+          <app-rating-input></app-rating-input>
           @if (feedbackForm.controls.rating.hasError('required') && feedbackForm.controls.rating.touched) {
-            <div class="error-message">Rating is required</div>
+            <mat-error>Rating is required</mat-error>
           }
           @if (feedbackForm.controls.rating.hasError('min')) {
-            <div class="error-message">Please select at least 1 star</div>
+            <mat-error>Please select at least 1 star</mat-error>
           }
         </div>
 
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline">
           <mat-label>Message</mat-label>
           <textarea
             matInput
@@ -96,25 +96,26 @@
           </button>
         </div>
 
+        <mat-divider></mat-divider>
+
         <div class="debug-info">
-          <h4>Debug Information:</h4>
-          <div class="debug-section">
-            <strong>Form Status:</strong>
-            <span [class.valid]="feedbackForm.valid" [class.invalid]="feedbackForm.invalid">
+          <h4 class="mat-subtitle-1">Debug Information</h4>
+          <div class="debug-row">
+            <strong class="mat-body-strong">Form Status:</strong>
+            <span class="mat-body-1" [class.valid]="feedbackForm.valid" [class.invalid]="feedbackForm.invalid">
               {{ feedbackForm.valid ? '✓ Valid' : '✗ Invalid' }}
             </span>
           </div>
-          <div class="debug-section">
-            <strong>Form Value:</strong>
-            <pre>{{ feedbackForm.value | json }}</pre>
+          <div class="debug-row">
+            <strong class="mat-body-strong">Form Value:</strong>
+            <pre class="mat-body-1">{{ feedbackForm.value | json }}</pre>
           </div>
-          <div class="debug-section">
-            <strong>Form Errors:</strong>
-            <pre>{{ getFormErrors() | json }}</pre>
+          <div class="debug-row">
+            <strong class="mat-body-strong">Form Errors:</strong>
+            <pre class="mat-body-1">{{ getFormErrors() | json }}</pre>
           </div>
         </div>
       </form>
     </mat-card-content>
   </mat-card>
 </div>
-

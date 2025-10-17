@@ -27,29 +27,38 @@ import { MatIconModule } from '@angular/material/icon';
     .rating-container {
       display: flex;
       align-items: center;
-      gap: 4px;
-      padding: 8px 0;
+      gap: 0.25rem;
+      padding: 0.5rem 0;
+
+      &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
 
     .star {
       cursor: pointer;
       user-select: none;
       transition: color 0.2s, transform 0.1s;
-      color: #ffc107;
+      color: var(--mat-sys-tertiary);
 
-      &:hover {
+      &:hover:not(.disabled) {
         transform: scale(1.1);
       }
 
       &.filled {
-        color: #ffc107;
+        color: var(--mat-sys-tertiary);
+      }
+
+      &.disabled {
+        cursor: not-allowed;
       }
     }
 
     .rating-text {
-      margin-left: 8px;
-      font-size: 14px;
-      color: rgba(0, 0, 0, 0.6);
+      margin-left: 0.5rem;
+      font-size: var(--mat-sys-body-small-size);
+      color: var(--mat-sys-on-surface-variant);
     }
   `],
 })
