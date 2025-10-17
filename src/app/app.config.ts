@@ -12,9 +12,6 @@ import { ConfigService } from './exercise3-di/config.service';
 import { FeatureFlagsService } from './exercise3-di/feature-flags.service';
 import { UserPreferencesService } from './exercise3-di/user-preferences.service';
 
-// BAD: Multiple provideAppInitializer calls run in PARALLEL
-// This causes race conditions because they depend on each other
-// but execute simultaneously!
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -29,11 +26,11 @@ export const appConfig: ApplicationConfig = {
     // }),
     // provideAppInitializer(() => {
     //   const preferencesService = inject(UserPreferencesService);
-    //   return preferencesService.initialize(); // BAD: Needs ConfigService first!
+    //   return preferencesService.initialize();
     // }),
     // provideAppInitializer(() => {
     //   const flagsService = inject(FeatureFlagsService);
-    //   return flagsService.initialize(); // BAD: Needs both previous services!
+    //   return flagsService.initialize();
     // }),
   ],
 };

@@ -11,11 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Exercise1Service, User, Post } from './exercise1-service';
 
-// BAD: Component has multiple responsibilities - no separation of concerns
-// - Data fetching logic
-// - Business logic (filtering, sorting)
-// - Presentation logic
-// - No ngOnDestroy for cleanup
 @Component({
   selector: 'app-exercise1',
   imports: [
