@@ -1,15 +1,16 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Exercise1Service, User, Post } from './exercise1-service';
+import { MatSelectModule } from '@angular/material/select';
+import { delay, of } from 'rxjs';
+import { Exercise1Service, Post, User } from './exercise1-service';
 
 @Component({
   selector: 'app-exercise1',
@@ -56,11 +57,19 @@ export class Exercise1Component {
 
       if (users.length > 0) {
         this.selectedUser = users[0];
-        this.exercise1Service.loadPostsForUser(users[0].id).subscribe((posts) => {
+        this.loadPostsForUser(users[0].id).subscribe((posts) => {
           this.userPosts = posts;
         });
       }
     });
+  }
+
+  loadPostsForUser(userId: number) {
+    return of([
+      { id: 1, userId: userId, title: 'First Post', content: 'Content here', likes: 10 },
+      { id: 2, userId: userId, title: 'Second Post', content: 'More content', likes: 25 },
+      { id: 3, userId: userId, title: 'Third Post', content: 'Even more content', likes: 5 },
+    ]).pipe(delay(100));
   }
 
   onSearchChange() {

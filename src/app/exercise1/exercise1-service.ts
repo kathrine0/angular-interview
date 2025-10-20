@@ -37,12 +37,4 @@ export class Exercise1Service {
       ]);
     }, 100);
   }
-
-  loadPostsForUser(userId: number) {
-    return of([
-      { id: 1, userId: userId, title: 'First Post', content: 'Content here', likes: 10 },
-      { id: 2, userId: userId, title: 'Second Post', content: 'More content', likes: 25 },
-      { id: 3, userId: userId, title: 'Third Post', content: 'Even more content', likes: 5 }
-    ]).pipe(delay(100));
-  }
 }
